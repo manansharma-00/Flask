@@ -1,3 +1,8 @@
-<h1>Hello {{user_name | upper}}</h1>
-<h1>Hello {{user_name | lower}}</h1>
-<h1>Hello {{user_name | capitalize}}</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Hello {{user_name | upper}}</h1>
+    <h1>Hello {{user_name | lower}}</h1>
+    <h1>Hello {{user_name | capitalize}}</h1>
+
+{% endblock %}

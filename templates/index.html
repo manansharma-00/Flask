@@ -1,18 +1,23 @@
-<h1>Hello World</h1>
-<p>My name is {{first_name}} and this is my first webpage </p>
-<p> Isn't this cool?</p>
-<p>With safe: {{stuff|safe}}</p>
-<p>With striptags: {{stuff|striptags}}</p>
-<p>With title n striptags: {{stuff|title |striptags}}</p>
-<p>
-    {% for x in pizza %}
-        {% if x == 2 %}
-            {{x + 12}}<br/>
-        {% else %}
-            {{x}}<br/>
-        {% endif %}
-    {% endfor %}
-</p>
+{% extends 'base.html' %}
 
-<br/><br/>
-{{pizza.2}}
+{% block content %}
+    <h1>Hello World</h1>
+    <p>My name is {{first_name}} and this is my first webpage </p>
+    <p> Isn't this cool?</p>
+    <p>With safe: {{stuff|safe}}</p>
+    <p>With striptags: {{stuff|striptags}}</p>
+    <p>With title n striptags: {{stuff|title |striptags}}</p>
+    <p>
+        {% for x in pizza %}
+            {% if x == 2 %}
+                {{x + 12}}<br/>
+            {% else %}
+                {{x}}<br/>
+            {% endif %}
+        {% endfor %}
+    </p>
+
+    <br/><br/>
+    {{pizza.2}}
+
+{% endblock %}

@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for x in get_flashed_messages() %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ x }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+{% endfor %}
+
+    <h2>Dashboard</h2>
+    <div class="card text-left">
+        <div class="card-header">
+            {{ current_user.name }}
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+
+    <div class = "container">
+        <div class = "row">
+            <div class = "col-8">
+                <strong>Name: </strong>{{ current_user.name }}<br/>
+                <strong>Username: </strong>{{ current_user.username }}<br/>
+                <strong>User id: </strong>{{ current_user.id }}<br/>
+                <strong>Email: </strong>{{ current_user.email }}<br/>
+                <strong>Favourite Color: </strong>{{ current_user.favourite_color }}<br/>
+                <strong>About Author: </strong>{{ current_user.about_author }}<br/>
+                <strong>Date Joined: </strong>{{ current_user.date_added }}<br/>
+                <strong>Profile Pic: </strong>{{ current_user.profile_pic }}<br/>
+
+
+                </p>
+                <a href = "{{ url_for('logout') }}" class = "btn btn-primary btn-sm">Logout</a>
+                <a href = "{{ url_for('update', id = current_user.id) }}" class = "btn btn-primary btn-sm">Update User</a>
+                <a href = "{{ url_for('delete', id = current_user.id) }}" class = "btn btn-danger btn-sm">Delete User</a>
+                <br><br>
+         
+            </div>
+            <div class = "col-4">
+                <img src = "{{ url_for('static', filename = 'images/profile_pic2.png')}}" width="200" align = "right">
+            </div>
+        </div>
+    </div>
+        
+        </div>
+        <div class="card-footer text-body-secondary">
+          2 days ago
+        </div>
+      </div>
+
+    <br/><br/>
+
+    <div class="card text-left">
+        <div class="card-header">
+            Update User 
+        </div>
+        <div class="card-body">
+          <!-- <h5 class="card-title"> Welcome to your User Dashboard</h5> -->
+          <form action=" /dashboard" method="POST" enctype = "multipart/form-data">
+            {{ form.hidden_tag() }}
+    
+            {{ form.name.label(
+                class="form-label"
+            ) }}
+    
+            {{ form.name(
+                class="form-control",
+                value=name_to_update.name,
+            ) }}
+            <br/>
+    
+            {{ form.username.label(
+                class="form-label"
+            ) }}
+    
+            {{ form.username(
+                class="form-control",
+                value=name_to_update.username,
+            ) }}
+            <br/>
+    
+            {{ form.email.label(
+                class="form-label"
+            ) }}
+    
+            {{ form.email(
+                class="form-control",
+                value=name_to_update.email,
+            ) }}
+            <br/>
+    
+            {{ form.favourite_color.label(
+                class="form-label"
+            ) }}
+    
+            {{ form.favourite_color(
+                class="form-control",
+                value=name_to_update.favourite_color,
+            ) }}
+            
+            <br>
+
+            {{ form.about_author.label(
+                class="form-label"
+            ) }}
+    
+            <textarea name = "about_author" class = "form-control">{{ name_to_update.about_author }}
+            </textarea>
+            
+            <br>
+
+            {{ form.profile_pic.label(
+                class="form-label"
+            ) }}
+    
+            {{ form.profile_pic(
+                class="form-control",
+                value=name_to_update.profile_pic,
+            ) }}
+            <br/><br/>
+
+            {{ form.submit(
+                class="btn btn-primary"
+            ) }}
+        
+        </form>
+        </div>
+    </div>
+
+    
+
+{% endblock %}
+

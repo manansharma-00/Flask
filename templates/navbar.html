@@ -9,16 +9,55 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('user', name = 'John')}}">User Profile</a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('name')}}">Name</a>
           </li>
+
+          <!-- change the url according to the situation, if the user is logged in, 
+          it will display logout link and button and vice versa -->
+          {% if current_user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('add_user')}}">Add User</a>
+            <a class="nav-link" href="{{ url_for('dashboard')}}">Dashboard</a>
           </li>
+          {% if current_user.id == 21 %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('admin')}}">Admin</a>
+            </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('logout')}}">Logout</a>
+          </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('login')}}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('add_user')}}">Register</a>
+            </li>
+          {% endif %}
+
+
+          
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('add_post')}}">Add Blog Post</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('posts')}}">Posts</a>
+          </li>
+
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <!-- <form method = "POST" action = "{{ url_for('search') }}" class="d-flex" role="search">
+          {{ form.hidden_tag() }}
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search", name="Searched">
           <button class="btn btn-outline-success" type="submit">Search</button>
+        </form> -->
+
+        <form method = "POST" action="{{url_for('search')}}" class = "d-flex">
+          {{ form.hidden_tag() }}
+          <input class = "form-control me-2" type = "search" placeholder="Search" aria-label="Search", name = "searched">
+          <button class = "btn btn-outline-secondary" type = "submit">Search</button>
         </form>
       </div>
     </div>

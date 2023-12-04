@@ -10,7 +10,7 @@
 {% endfor %}
 
 {% if name %}
-    <h1>Update User</h1>
+    <h1>User Added</h1>
     <br/>
 <table class="table table-hover table-bordered table-striped">
 
@@ -18,6 +18,7 @@
     <tr>
         <td>{{ our_user.id }}. 
             <a href="{{ url_for('update', id=our_user.id)}}">{{ our_user.name }}</a> - 
+            {{ our_user.username }} - 
             {{ our_user.email }} - 
             {{ our_user.favourite_color }} - 
             <a href="{{ url_for('delete', id=our_user.id)}}">Delete</a>
@@ -41,6 +42,17 @@
             class="form-control"
         ) }}
         <br/>
+
+        {{ form.username.label(
+            class="form-label"
+        ) }}
+
+        {{ form.username(
+            class="form-control"
+        ) }}
+        <br/>
+
+        
 
         {{ form.email.label(
             class="form-label"
@@ -92,8 +104,10 @@
     <tr>
         <td>{{ our_user.id }}. 
             <a href="{{ url_for('update', id=our_user.id)}}">{{ our_user.name }}</a>  - 
+            {{ our_user.username }} - 
             {{ our_user.email }} - 
             {{ our_user.favourite_color }} - 
+            PW: {{ our_user.password_hash}}
             <a href="{{ url_for('delete', id=our_user.id)}}">Delete</a>
         </td>
     </tr>
